@@ -11,6 +11,7 @@ bm_entry (
     void
     )
 {
+   EFI_FILE_HANDLE boot_volume;
    status_t status;
    struct memory_map memory_map;
 
@@ -30,6 +31,16 @@ bm_entry (
 
    if (!OS_SUCCESS(status)) {
       cons_printf(L"error: could not disable watchdog timer, continuing...\r\n");
+   }
+
+   /*
+    * Obtain the root volume that we are booted on.
+    */
+
+   status = get_root_volume(&boot_volume);
+   if (!OS_SUCCESS(status)) {
+      cons_printf(L"fatal: could not obtain boot volume\r\n");
+      return;
    }
 
     /*
