@@ -7,6 +7,16 @@
     .section .ipl
     .globl _start
 _start:
+    /* Setup our own stack */
+    xor %rbp, %rbp
+    lea stack_top(%rip), %rsp
+
 1:  cli
     hlt
     jmp 1b
+
+    .align 16
+    .section .bss
+stack_base:
+    .skip 4096
+stack_top:
