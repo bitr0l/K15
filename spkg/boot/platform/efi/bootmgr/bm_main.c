@@ -72,7 +72,7 @@ bm_entry (
    efi_status = gBS->AllocatePages(
       AllocateAnyPages,
       EfiLoaderData,
-      kimage_size,
+      kimage_size / EFI_PAGE_SIZE,
       &kernel_image
    );
 
