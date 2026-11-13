@@ -19,6 +19,10 @@
     #define __out
 #endif
 
+#ifndef __inout
+    #define __inout
+#endif
+
 #ifndef __optional
     #define __optional
 #endif
