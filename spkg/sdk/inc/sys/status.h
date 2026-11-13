@@ -14,6 +14,7 @@
 #define STATUS_OUT_OF_RESOURCES 0x00000002UL   /* System out of resources */
 #define STATUS_NOT_SUPPORTED    0x00000003UL   /* Operation not supported */
 #define STATUS_NOT_EXEC         0x00000004UL   /* Not executable */
+#define STATUS_FAILURE          0x00000005UL   /* Operation failed */
 
 /*
  * All routines returning status codes must be of the
