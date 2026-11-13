@@ -4,6 +4,7 @@
  * Provided under the BSD-3 clause.
  */
 
+#include <sys/comdef.h>
 #include <efi/efi.h>
 
 /*
@@ -19,8 +20,8 @@
 EFIAPI
 EFI_STATUS
 efi_main (
-    IN EFI_HANDLE ImageHandle,
-    IN EFI_SYSTEM_TABLE *SystemTable
+    __in EFI_HANDLE image_handle,
+    __in EFI_SYSTEM_TABLE *systab
     )
 {
     return EFI_SUCCESS;
