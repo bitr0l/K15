@@ -6,6 +6,7 @@
 
 #include <sys/comdef.h>
 #include <efi/efi.h>
+#include <efilib.h>
 
 /*
  * The firmware passes control to us at this entry point.
@@ -24,5 +25,16 @@ efi_main (
     __in EFI_SYSTEM_TABLE *systab
     )
 {
+    status_t status;
+
+    /*
+     * Initialize the EFI global state.
+     */
+
+    status = efi_firmware_init(image_handle, systab);
+    if (!OS_SUCCESS(status)) {
+        return EFI_INVALID_PARAMETER;
+    }
+
     return EFI_ABORTED;
 }
