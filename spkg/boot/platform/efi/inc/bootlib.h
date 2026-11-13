@@ -25,4 +25,13 @@ cons_printf (
     ...
     );
 
+/*
+ * Begin the actual boot process by starting the EFI
+ * boot manager.
+ */
+void
+bm_entry (
+    void
+    );
+
 #endif  /* !_BOOTLIB_H */

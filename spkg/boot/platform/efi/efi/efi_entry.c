@@ -7,6 +7,7 @@
 #include <sys/comdef.h>
 #include <efi/efi.h>
 #include <efilib.h>
+#include <bootlib.h>
 
 /*
  * The firmware passes control to us at this entry point.
@@ -36,5 +37,6 @@ efi_main (
         return EFI_INVALID_PARAMETER;
     }
 
+    bm_entry();
     return EFI_ABORTED;
 }
