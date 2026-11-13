@@ -5,6 +5,7 @@
 #
 
 COMMON_CFLAGS =							\
+	-target x86_64-unknown 				\
 	-ffreestanding						\
 	-nostdlib							\
 	-nostdinc							\
@@ -23,6 +24,4 @@ ifeq ($(CONFIG_ARCH),amd64)
 endif
 
 COMMON_LINK_FLAGS =	\
-	-ffreestanding  \
-	-nostdlib		\
-	-nostdinc
+	-nostdlib

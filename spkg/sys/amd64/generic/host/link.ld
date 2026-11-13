@@ -4,8 +4,6 @@
  * Provided under the BSD-3 clause.
  */
 
-OUTPUT_FORMAT(binary)
-
 SECTIONS
 {
     . = 0x00;
