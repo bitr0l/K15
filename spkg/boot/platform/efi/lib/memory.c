@@ -78,6 +78,24 @@ get_memory_map (
     }
 
     /*
+     * Allocate memory for our own internal representation.
+     */
+
+    map->nr_entries = efi_map_size / efi_desc_size;
+    boot_map_size = map->nr_entries * sizeof(struct memory_descrip);
+
+    efi_status = gBS->AllocatePool(
+        EfiLoaderData,
+        boot_map_size,
+        (void **)&map->map
+    );
+
+    if (efi_status != EFI_SUCCESS) {
+        gBS->FreePool(efi_desc_list);
+        return efi_to_os_status(efi_status);
+    }
+
+    /*
      * Allocate memory for us to store the firmware memory map
      * within...
      */
@@ -118,24 +136,6 @@ get_memory_map (
      }
 
     /*
-     * Allocate memory for our own internal representation.
-     */
-
-    map->nr_entries = efi_map_size / efi_desc_size;
-    boot_map_size = map->nr_entries * sizeof(struct memory_descrip);
-
-    efi_status = gBS->AllocatePool(
-        EfiLoaderData,
-        boot_map_size,
-        (void **)&map->map
-    );
-
-    if (efi_status != EFI_SUCCESS) {
-        gBS->FreePool(efi_desc_list);
-        return efi_to_os_status(efi_status);
-    }
-
-    /*
      * Populate our memory map.
      */
 
@@ -148,6 +148,5 @@ get_memory_map (
         efi_desc_cur = PTR_OFFSET(efi_desc_cur, efi_desc_size);
     }
 
-    gBS->FreePool(efi_desc_list);
     return STATUS_SUCCESS;
 }
