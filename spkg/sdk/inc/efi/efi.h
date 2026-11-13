@@ -7,7 +7,7 @@
 #ifndef _EFI_H
 #define _EFI_H
 
-#ifdef _M_X64
+#if defined(__x86_64__)
     #include "x64/efibind.h"
 #else
     #error Unsupported processor architecture!
