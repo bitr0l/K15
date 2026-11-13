@@ -8,6 +8,8 @@
 #include <bootlib.h>
 #include <efilib.h>
 
+#define LOADER_REVISION L"v0.0.1"
+
 void
 bm_entry (
     void
@@ -20,6 +22,9 @@ bm_entry (
    status_t status;
    struct memory_map memory_map;
    struct file_handle kernel;
+
+   cons_printf(L"-- k15 loader %s --\r\n", LOADER_REVISION);
+   cons_printf(L"booting...\r\n");
 
    /*
     * Disable the watchdog timer so that it cannot fire, most platforms
