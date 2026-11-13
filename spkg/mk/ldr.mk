@@ -10,7 +10,7 @@ LDR_COMMON_CFLAGS =						\
 	-fshort-wchar
 
 ifeq ($(CONFIG_ARCH),amd64)
-	LDR_COMMON_CFLAGS =					\
+	LDR_COMMON_CFLAGS +=				\
 		-mno-red-zone					\
 		-mgeneral-regs-only				\
 		-mno-sse						\
