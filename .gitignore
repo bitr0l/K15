@@ -1,4 +1,6 @@
 *.o
 *.d
 *.img
+/disk
 /out
+/OVMF.fd

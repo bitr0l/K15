@@ -28,9 +28,19 @@ check_deps() {
 }
 
 #
+# Make the disk to be booted from
+#
+make_disk() {
+    mkdir -p disk/EFI/BOOT/
+
+    mv out/BOOTX64.EFI disk/EFI/BOOT
+}
+
+#
 # Prepare the build environment.
 #
 build_prepare() {
+    mkdir -p out
     pushd spkg/
         source env/build.env
     popd
@@ -42,4 +52,26 @@ build_prepare() {
         lld-link
 }
 
+#
+# Build a directory with MAKE.
+#
+# $1: Directory to build
+#
+build_make() {
+    pushd $1/
+        $MAKE
+    popd
+}
+
+#
+# Begin the actual build process.
+#
+build() {
+    build_make      \
+        spkg/boot
+
+    make_disk
+}
+
 build_prepare
+build
