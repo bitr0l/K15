@@ -4,6 +4,7 @@
 # Provided under the BSD-3 clause.
 #
 
+.SILENT:
 PROMPT = printf "%s\t\t%s\n"
 
 CC = clang
