@@ -48,7 +48,7 @@ struct memory_map {
     struct memory_descrip *map;
     uint64_t nr_entries;
     UINTN key;
-    UINTN descriptor_ver;
+    UINT32 descriptor_ver;
 };
 
 /*
@@ -70,6 +70,20 @@ set_watchdog_timer (
     __in uint64_t code,
     __in uint64_t data_size,
     __in wchar_t *wd_data
+    );
+
+/*
+ * Obtain the platform memory map.
+ *
+ * @map:  Resulting memory map is written here
+ *
+ * Return value:
+ *      Returns STATUS_SUCCESS if successful.
+ *      Returns error code on failure.
+ */
+status_t
+get_memory_map (
+    __out struct memory_map *map
     );
 
 /*
