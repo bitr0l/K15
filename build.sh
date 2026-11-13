@@ -35,6 +35,11 @@ make_disk() {
 
     mv out/BOOTX64.EFI disk/EFI/BOOT
     cp out/k15.sys disk/k15.sys
+
+    rm -f out/k15.img
+    truncate -s 4M out/k15.img
+    mkfs.fat -F 12 out/k15.img 4096
+    mcopy -s -i out/k15.img disk/* ::/
 }
 
 #
@@ -50,7 +55,9 @@ build_prepare() {
         clang       \
         rsync       \
         make        \
-        lld-link
+        lld-link    \
+        mtools      \
+        mkfs.fat
 }
 
 #
