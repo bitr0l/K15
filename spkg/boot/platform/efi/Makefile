@@ -8,6 +8,7 @@ include ../../../mk/common.mk
 include ../../../mk/ldr.mk
 
 CFILES = $(shell find . -name "*.c")
+CFILES += $(shell find $(GLOBAL_ROOT)/sdk/crt/ -name "*.c")
 OFILES = $(CFILES:.c=.o)
 DFILES = $(CFILES:.c=.d)
 
@@ -20,13 +21,14 @@ LDFLAGS =                               \
 CFLAGS =                                 \
         $(LDR_COMMON_CFLAGS)             \
 		-I$(GLOBAL_ROOT)/sdk/inc		 \
+		-I$(GLOBAL_ROOT)/sdk/inc/crt	\
         -O2                              \
 		-MMD                             \
 		-Iinc							 \
 		-fms-extensions
 
 .PHONY: all
-all: $(OFILES) $(REAL_ROOT)/out/BOOTX64.EFI
+all: $(OFILES) $(REAL_ROOT)/out/BOOTX64.EFI postbuild
 
 -include $(DFILES)
 %.o: %.c
@@ -36,3 +38,7 @@ all: $(OFILES) $(REAL_ROOT)/out/BOOTX64.EFI
 .PHONY: BOOTX64.EFI
 $(REAL_ROOT)/out/BOOTX64.EFI:
 	$(CC) $(LDFLAGS) $(OFILES) -o $@
+
+.PHONY: postbuild
+postbuild:
+	rm -f $(GLOBAL_ROOT)/sdk/crt/**/{*.o,*.d}
