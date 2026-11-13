@@ -9,6 +9,7 @@
 EFI_HANDLE gImageHandle;
 EFI_SYSTEM_TABLE *gST;
 EFI_BOOT_SERVICES *gBS;
+EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *gCons;
 
 status_t
 efi_firmware_init (
@@ -23,5 +24,6 @@ efi_firmware_init (
     gImageHandle = image_handle;
     gST = systab;
     gBS = systab->BootServices;
+    gCons = systab->ConOut;
     return STATUS_SUCCESS;
 }

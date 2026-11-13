@@ -17,6 +17,7 @@
 extern EFI_HANDLE gImageHandle;
 extern EFI_SYSTEM_TABLE *gST;
 extern EFI_BOOT_SERVICES *gBS;
+extern EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *gCons;
 
 /*
  * Convert an EFI status type to our native status types.
