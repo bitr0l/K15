@@ -37,6 +37,19 @@ efi_main (
         return EFI_INVALID_PARAMETER;
     }
 
+    /*
+     * Reset the console, don't care if it fails...
+     */
+
+    gCons->Reset(
+        gCons,
+        TRUE
+    );
+
+    /*
+     * Handoff to the boot manager.
+     */
+
     bm_entry();
     return EFI_ABORTED;
 }
