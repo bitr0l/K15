@@ -5,7 +5,11 @@
 #
 
 .PHONY: all
-all: machine
+all: kernel machine
+
+.PHONY: kernel
+kernel:
+	cd common/kern; $(MAKE)
 
 .PHONY: machine
 machine:

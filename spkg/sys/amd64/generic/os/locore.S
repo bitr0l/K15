@@ -8,6 +8,7 @@
     .globl _start
     .extern __bss_start
     .extern __bss_end
+    .extern kmain
 _start:
     /* Setup our own stack */
     xor %rbp, %rbp
@@ -25,8 +26,10 @@ _start:
     cld
     rep stosb
 
+    /* Load our own GDT and enter kernel */
     lea g_GDTR(%rip), %rdi
     call gdt_load
+    call kmain
 
     mfence
 1:  cli
