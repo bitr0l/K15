@@ -102,6 +102,10 @@ cons_printf (
  * Obtain the root volume we are booted on.
  *
  * @volume: Resulting volume is written here
+ *
+ * Return value:
+ *      Returns STATUS_SUCCESS if successful.
+ *      Returns error code on failure.
  */
 status_t
 get_root_volume (
