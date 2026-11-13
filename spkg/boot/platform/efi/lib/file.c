@@ -117,3 +117,29 @@ open_file_path (
 
     return efi_to_os_status(efi_status);
 }
+
+status_t
+read_file (
+    __in struct file_handle *handle,
+    __inout UINTN *buffer_size,
+    __out void *buffer
+    )
+{
+    EFI_STATUS efi_status;
+
+    if (handle == NULL || buffer_size == NULL) {
+        return STATUS_INVALID_PARAM;
+    }
+
+    if (buffer == NULL) {
+        return STATUS_INVALID_PARAM;
+    }
+
+    efi_status = handle->handle->Read(
+        handle->handle,
+        buffer_size,
+        buffer
+    );
+
+    return efi_to_os_status(efi_status);
+}

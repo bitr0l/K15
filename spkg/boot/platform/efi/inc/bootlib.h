@@ -142,6 +142,24 @@ open_file_path (
     );
 
 /*
+ * Read the contents of a file into a memory buffer.
+ *
+ * @handle:         Handle of file to read
+ * @buffer_size:    Number of bytes to read
+ * @buffer:         File is written out here
+ *
+ * Return value:
+ *      Returns STATUS_SUCCESS if successful.
+ *      Returns error code on failure.
+ */
+status_t
+read_file (
+    __in struct file_handle *handle,
+    __inout UINTN *buffer_size,
+    __out void *buffer
+    );
+
+/*
  * Begin the actual boot process by starting the EFI
  * boot manager.
  */
