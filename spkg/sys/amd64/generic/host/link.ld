@@ -6,7 +6,7 @@
 
 SECTIONS
 {
-    . = 0x00;
+    . = 1M;
 
     .text : ALIGN(4K) {
         *(.ipl)

@@ -66,11 +66,15 @@ bm_entry (
 
    /*
     * Allocate memory for the kernel image and fill it.
+    *
+    * XXX: The kernel expects to be loaded at 1 MiB
     */
 
    kimage_size = ALIGN_UP(kernel.size_bytes, EFI_PAGE_SIZE);
+   kernel_image = (EFI_PHYSICAL_ADDRESS)0x100000;
+
    efi_status = gBS->AllocatePages(
-      AllocateAnyPages,
+      AllocateAddress,
       EfiLoaderData,
       kimage_size / EFI_PAGE_SIZE,
       &kernel_image
