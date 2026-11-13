@@ -99,6 +99,16 @@ cons_printf (
     );
 
 /*
+ * Obtain the root volume we are booted on.
+ *
+ * @volume: Resulting volume is written here
+ */
+status_t
+get_root_volume (
+    __out EFI_FILE_HANDLE *volume
+    );
+
+/*
  * Begin the actual boot process by starting the EFI
  * boot manager.
  */
