@@ -12,6 +12,7 @@ bm_entry (
     )
 {
     status_t status;
+    struct memory_map memory_map;
 
     /*
      * Disable the watchdog timer so that it cannot fire, most platforms
@@ -29,5 +30,17 @@ bm_entry (
 
      if (!OS_SUCCESS(status)) {
         cons_printf(L"error: could not disable watchdog timer, continuing...\r\n");
+     }
+
+     /*
+      * Obtain the platform memory map.
+      *
+      * XXX: This must remain the last thing done.
+      */
+
+     status = get_memory_map(&memory_map);
+     if (!OS_SUCCESS(status)) {
+         cons_printf(L"fatal: unable to obtain memory map\r\n");
+         return;
      }
 }
