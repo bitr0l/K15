@@ -34,6 +34,7 @@ make_disk() {
     mkdir -p disk/EFI/BOOT/
 
     mv out/BOOTX64.EFI disk/EFI/BOOT
+    cp out/k15.sys disk/k15.sys
 }
 
 #

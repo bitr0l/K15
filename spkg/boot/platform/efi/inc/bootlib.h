@@ -14,6 +14,11 @@
 #include <wchar.h>
 
 /*
+ * Path of kernel binary.
+ */
+#define KERNEL_PATH L"k15.sys"
+
+/*
  * Memory region types.
  */
 #define MEMORY_RESERVED  0x00000000UL       /* Reserved memory */
