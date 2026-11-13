@@ -24,5 +24,5 @@ efi_main (
     __in EFI_SYSTEM_TABLE *systab
     )
 {
-    return EFI_SUCCESS;
+    return EFI_ABORTED;
 }
