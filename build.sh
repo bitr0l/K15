@@ -57,7 +57,8 @@ build_prepare() {
         make        \
         lld-link    \
         mtools      \
-        mkfs.fat
+        mkfs.fat    \
+        truncate
 }
 
 #
