@@ -14,6 +14,44 @@
 #include <wchar.h>
 
 /*
+ * Memory region types.
+ */
+#define MEMORY_RESERVED  0x00000000UL       /* Reserved memory */
+#define MEMORY_USABLE    0x00000001UL       /* Usable memory */
+#define MEMORY_BAD       0x00000002UL       /* Unusable memory */
+
+/* Memory region kind type */
+typedef uint32_t memkind_t;
+
+/*
+ * Our own internal representation of a memory descriptor.
+ *
+ * @kind:       Memory region kind.
+ * @pbase:      Physical base of memory region.
+ * @length:     Length of region in bytes.
+ */
+struct memory_descrip {
+    memkind_t kind;
+    uintptr_t pbase;
+    uint64_t length;
+};
+
+/*
+ * Represents our own internal representation of a memory map.
+ *
+ * @map:                Our memory map.
+ * @nr_entries:         Number of entries in our memory map.
+ * @key:                EFI map key.
+ * @descriptor_ver:     EFI descriptor version.
+ */
+struct memory_map {
+    struct memory_descrip *map;
+    uint64_t nr_entries;
+    UINTN key;
+    UINTN descriptor_ver;
+};
+
+/*
  * Configure the watchdog timer, wraps boot service's
  * SetWatchdogTimer().
  *
