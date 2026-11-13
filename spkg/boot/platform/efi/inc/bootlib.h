@@ -52,6 +52,17 @@ struct memory_map {
 };
 
 /*
+ * Represents an opened file.
+ *
+ * @handle:         EFI file interface
+ * @size_bytes:     Size of file in bytes
+ */
+struct file_handle {
+    EFI_FILE_HANDLE handle;
+    uint64_t size_bytes;
+};
+
+/*
  * Configure the watchdog timer, wraps boot service's
  * SetWatchdogTimer().
  *
@@ -110,6 +121,24 @@ cons_printf (
 status_t
 get_root_volume (
     __out EFI_FILE_HANDLE *volume
+    );
+
+/*
+ * Open a file by path.
+ *
+ * @volume:         Volume file resides on
+ * @file_path:      Path of file to open
+ * @handle:         Resulting handle is written here
+ *
+ * Return value:
+ *      Returns STATUS_SUCCESS if successful.
+ *      Returns error code on failure.
+ */
+status_t
+open_file_path (
+    __in EFI_FILE_HANDLE volume,
+    __in wchar_t *file_path,
+    __out struct file_handle *handle
     );
 
 /*
