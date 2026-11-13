@@ -25,6 +25,7 @@ _start:
     cld
     rep stosb
 
+    mfence
 1:  cli
     hlt
     jmp 1b
