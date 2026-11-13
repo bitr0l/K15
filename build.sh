@@ -70,6 +70,9 @@ build() {
     build_make      \
         spkg/boot
 
+    build_make      \
+        spkg/sys
+
     make_disk
 }
 
