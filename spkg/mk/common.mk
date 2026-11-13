@@ -4,7 +4,7 @@
 # Provided under the BSD-3 clause.
 #
 
-PROMPT = "%s\t\t%s\n"
+PROMPT = printf "%s\t\t%s\n"
 
 CC = clang
 LD = lld-link
